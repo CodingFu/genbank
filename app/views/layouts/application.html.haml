@@ -9,6 +9,10 @@
     = render 'common/nav'
     .container
       .row
-        .span3
-        .span9
-          = yield
+        - if user_signed_in?
+          .span3
+          .span9
+            = yield
+        - else
+          .span12
+            = yield

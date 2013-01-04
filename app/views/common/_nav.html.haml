@@ -4,9 +4,15 @@
       %a.brand{ :href => "/"} Genbank
       .nav.nav-collapse
         %ul.nav
-          %li
-            %a{:href => '#'} Payment history
-          %li
-            %a{:href => '#'} Transfer founds
-          %li
-            %a{:href => '#'} Pay for service
+          - if user_signed_in?
+            %li
+              %a{:href => '#'} Payment history
+            %li
+              %a{:href => '#'} Transfer founds
+            %li
+              %a{:href => '#'} Pay for service
+            %li
+              = link_to "Sign out", destroy_user_session_path, method: :delete
+          - else
+            %li
+              = link_to "Sign in", new_user_session_path
