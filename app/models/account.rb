@@ -10,4 +10,18 @@ class Account < ActiveRecord::Base
   }
 
   belongs_to :user
+
+  validates_presence_of :currency, :uid, :user
+  validates_uniqueness_of :uid
+
+  def formatted_uid
+    formatted = ""
+    uid.split('').each_with_index do |n, ix|
+      formatted += ' ' if ix % 4 == 0
+      formatted += n
+    end
+
+    formatted
+  end
+
 end

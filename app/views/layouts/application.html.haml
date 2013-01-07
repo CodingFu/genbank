@@ -10,9 +10,10 @@
     .container
       .row
         - if user_signed_in?
-          .span3
-          .span9
+          .span7
             = yield
+          .span5
+            = render 'common/accounts'
         - else
           .span12
             = yield
