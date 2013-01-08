@@ -4,6 +4,7 @@ ActiveAdmin.register MoneyTransaction do
     column :created_at
     column :from
     column :to
+    column :comment
     column :amount
   end                                 
 
