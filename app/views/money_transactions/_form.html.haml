@@ -4,6 +4,7 @@
     = f.association :from, :as => :radio_buttons, :collection => current_user.accounts, :label_method => :name
     = f.input :to_uid, :label => "To"
     = f.input :amount
+    = f.input :comment
   .form-actions
     = f.button :submit, :value => "Transfer money"
 
