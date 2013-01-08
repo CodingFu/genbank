@@ -13,7 +13,7 @@ gem 'haml'
 gem 'devise'
 gem 'simple_form'
 
-gem 'pry-rails', :group => :development
+gem 'pry-remote', :group => :development
 
 gem 'activeadmin'
 gem 'sass-rails'

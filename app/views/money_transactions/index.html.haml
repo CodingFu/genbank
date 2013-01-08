@@ -1,1 +1,38 @@
+%h2 Payment history
+%table.table.table-striped
+  %thead
+    %tr
+      %td ID
+      %td Date
+      %td From / To
+      %td Amount
+  %tbody
+    - @money_transactions.each do |t|
+      - is_incoming = current_user.account_ids.include?(t.to.id)
+      - is_outcoming = current_user.account_ids.include?(t.from.id)
+      - if is_outcoming
+        %tr
+          %td= t.id
+          %td
+            %small= t.created_at.strftime("%d %b %Y - %H:%M")
+          %td
+            %span.label.label-inverse
+              = t.from.formatted_uid
+            %i.icon-upload
+            %span.label
+              = t.to.formatted_uid
+          %td= "#{t.amount} #{t.to.currency}"
+      - if is_incoming
+        %tr
+          %td= t.id
+          %td
+            %small= t.created_at.strftime("%d %b %Y - %H:%M")
+          %td
+            %span.label
+              = t.from.formatted_uid
+            %i.icon-download-alt
+            %span.label.label-inverse
+              = t.from.formatted_uid
+          %td= "#{t.amount} #{t.to.currency}"
+
 

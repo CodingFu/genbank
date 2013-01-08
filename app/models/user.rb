@@ -9,4 +9,17 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :accounts
+
+
+  def name
+    self.email
+  end
+  
+  def money_transactions
+    ids = self.accounts.map(&:id)
+    MoneyTransaction
+      .where("to_id IN (?) OR from_id IN (?)", ids, ids)
+      .order("created_at DESC")
+  end
+
 end
