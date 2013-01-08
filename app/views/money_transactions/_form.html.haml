@@ -1,0 +1,26 @@
+= simple_form_for(@money_transaction, :html => {:class => "form-horizontal"}) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.association :from, :as => :radio_buttons, :collection => current_user.accounts, :label_method => :name
+    = f.input :to_uid, :label => "To"
+    = f.input :amount
+  .form-actions
+    = f.button :submit, :value => "Transfer money"
+
+:javascript
+  $(function() {
+    var $mt = $("#money_transaction_amount");
+    $mt.parent().addClass("input-append");
+    $mt.after("<span class='add-on' id='currency'>USD</span>");
+
+    var updateCurrency = function() {
+      if ($("input[type=radio]:checked").length != 0) {
+        var currency = $("input[type=radio]:checked").parent().text().match(/\((.*)\)/)[1];
+      }
+      $("#currency").text(currency);
+    };
+
+    updateCurrency();
+    $("input[type=radio]").click(updateCurrency);
+    
+  });

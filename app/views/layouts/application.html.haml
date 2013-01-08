@@ -9,6 +9,17 @@
     = render 'common/nav'
     .container
       .row
+        .span12
+          - if notice
+            %p.notice= notice
+          - if alert
+            %p.alert= alert
+          - for alert_type in [:error, :success, :warning, :info]
+            - if flash[alert_type]
+              .alert{ :class => ('alert-' + alert_type.to_s) }
+                %a.close{ 'data-dismiss' => 'alert', :href => '#'} &times;
+                = flash[alert_type]
+      .row
         - if user_signed_in?
           .span7
             = yield

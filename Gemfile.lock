@@ -48,6 +48,7 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
+    coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -89,12 +90,19 @@ GEM
       activerecord (~> 3.1)
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
+    method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.5.0)
     orm_adapter (0.0.7)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
+    pry-rails (0.2.2)
+      pry (>= 0.9.10)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -130,6 +138,7 @@ GEM
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    slop (3.3.3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -158,6 +167,7 @@ DEPENDENCIES
   haml
   jquery-rails
   meta_search (>= 1.1.0.pre)
+  pry-rails
   rails (= 3.2.9)
   sass-rails
   simple_form

@@ -13,4 +13,12 @@
  */
 
 body > .container { margin-top: 50px; }
+.form-horizontal .input-append {
+  display: block !important;
+}
+
+.help-inline {
+  display: block !important;
+  font-size: 12px !important;
+}
  

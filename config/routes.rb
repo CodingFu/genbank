@@ -5,5 +5,7 @@ Bank::Application.routes.draw do
 
   devise_for :users
 
+  resources :money_transactions
+
   root :to => "home#index"
 end

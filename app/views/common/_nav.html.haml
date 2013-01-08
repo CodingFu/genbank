@@ -7,8 +7,7 @@
           - if user_signed_in?
             %li
               %a{:href => '#'} Payment history
-            %li
-              %a{:href => '#'} Transfer founds
+            %li= link_to "Transfer money", new_money_transaction_url
             %li
               %a{:href => '#'} Pay for service
             %li

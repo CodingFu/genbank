@@ -1,6 +1,6 @@
-.well
-  %h2 Your accounts
+.well{:style => "padding: 0 19px 10px 19px"}
+  %h3 Your accounts
   - current_user.accounts.each do |account|
     .account{:style => "margin-bottom: 20px;"}
       %span.label= account.formatted_uid
-      = "#{"%5.2f" % account.balance} #{account.currency}"
+      %span{:style => "padding-left: 10px;"}= "#{"%5.2f" % account.balance} #{account.currency}"

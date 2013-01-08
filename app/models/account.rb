@@ -24,4 +24,8 @@ class Account < ActiveRecord::Base
     formatted
   end
 
+  def name
+    "#{formatted_uid} (#{currency})" 
+  end
+
 end

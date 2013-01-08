@@ -13,6 +13,8 @@ gem 'haml'
 gem 'devise'
 gem 'simple_form'
 
+gem 'pry-rails', :group => :development
+
 gem 'activeadmin'
 gem 'sass-rails'
 gem "meta_search",    '>= 1.1.0.pre'
