@@ -30,7 +30,7 @@ class MoneyTransaction < ActiveRecord::Base
   end
 
   def money_availability
-    errors.add(:amount, "you have not enough money") if amount.present? and amount > from.balance
+    errors.add(:amount, "you have not enough money") if amount.present? and from.present? and amount > from.balance
   end
 
   def currency_equality
