@@ -1,6 +1,6 @@
 class Account < ActiveRecord::Base
   
-  attr_accessible :balance, :currency, :uid, :user_id
+  attr_accessible :balance, :currency, :uid, :user_id, :is_vendor, :alias, :comment_alias, :comment_hint, :validation
   
   CURRENCIES = {
     :eur => "EUR",
@@ -8,6 +8,9 @@ class Account < ActiveRecord::Base
     :rur => "RUR",
     :bur => "BUR"
   }
+
+  scope :vendor, where(:is_vendor => true)
+  scope :non_vendor, where(:is_vendor => false)
 
   belongs_to :user
 
@@ -25,6 +28,7 @@ class Account < ActiveRecord::Base
 
   validates_presence_of :currency, :uid, :user
   validates_uniqueness_of :uid
+  validates_presence_of :alias, :comment_alias, :comment_hint, :validation, :if => :is_vendor
 
   def formatted_uid
     formatted = ""

@@ -1,0 +1,19 @@
+%h2= "Pay for #{@account.alias}"
+
+= simple_form_for(@money_transaction, :html => {:class => "form-horizontal"}, :url => pay_for_transfer_path, :method => :post) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.association :from, :as => :radio_buttons, :collection => current_user.accounts.where(:currency => @account.currency), :label_method => :name
+    = f.input :to_uid, :as => "Hidden"
+    = f.input :amount, :html => { :class => "input-appended"}
+    = f.input :comment, :label => @account.comment_alias
+  .form-actions
+    = f.button :submit, :value => "Transfer money"
+
+:javascript
+  $(function() {
+    var $mt = $("#money_transaction_amount");
+    $mt.parent().addClass("input-append");
+    $mt.after("<span class='add-on' id='currency'>#{@account.currency}</span>");
+    $("#money_transaction_comment").after("<div class='help-inline'>#{@account.comment_hint}</div")
+  });

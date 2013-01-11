@@ -17,8 +17,15 @@ body > .container { margin-top: 50px; }
   display: block !important;
 }
 
-.help-inline {
+span.help-inline {
   display: block !important;
   font-size: 12px !important;
+}
+
+div.help-inline {
+  display: block !important;
+  font-size: 11px !important;
+  color: #aaa !important;
+  font-style: italic;
 }
  

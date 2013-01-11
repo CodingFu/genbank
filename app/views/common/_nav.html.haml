@@ -7,8 +7,13 @@
           - if user_signed_in?
             %li= link_to "Payments history", money_transactions_url
             %li= link_to "Transfer money", new_money_transaction_url
-            / %li
-            /   %a{:href => '#'} Pay for service
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown"}
+                Pay for service
+                %b.caret
+              %ul.dropdown-menu
+                - Account.vendor.each do |a|
+                  %li= link_to a.alias, pay_for_path(a)
             %li
               = link_to "Sign out", destroy_user_session_path, method: :delete
           - else

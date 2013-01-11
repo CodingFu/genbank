@@ -11,15 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104181338) do
+ActiveRecord::Schema.define(:version => 20130111003526) do
 
   create_table "accounts", :force => true do |t|
     t.string   "currency"
-    t.decimal  "balance",    :precision => 14, :scale => 2, :default => 0.0
+    t.decimal  "balance",       :precision => 14, :scale => 2, :default => 0.0
     t.string   "uid"
     t.integer  "user_id"
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
+    t.string   "alias"
+    t.string   "comment_alias"
+    t.string   "validation"
+    t.boolean  "is_vendor"
+    t.string   "comment_hint"
   end
 
   add_index "accounts", ["uid"], :name => "index_accounts_on_uid"
@@ -56,6 +61,12 @@ ActiveRecord::Schema.define(:version => 20130104181338) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "controllers", :force => true do |t|
+    t.string   "money_transactions"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "money_transactions", :force => true do |t|
     t.integer  "from_id"

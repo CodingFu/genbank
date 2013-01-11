@@ -7,6 +7,12 @@ class MoneyTransaction < ActiveRecord::Base
 
   before_validation(:on => :create) do
     self.to = Account.find_by_uid(to_uid.gsub(/[^0-9]/, ""))
+    
+    if self.to.present? && self.to.is_vendor
+      rx = Regexp.new self.to.validation
+      errors.add(:comment, self.to.comment_hint) unless rx.match(self.comment)
+    end
+  
   end
 
   validates_presence_of :from_id
@@ -14,6 +20,8 @@ class MoneyTransaction < ActiveRecord::Base
   validates :to_uid, :format => { :with => /^[0-9\-\ ]+$/, :message => "Wrong format. Only digits, dashes and spaces are allowed"}
   validate :positiveness_of_amount, :money_availability,
     :currency_equality, :existence_of_to
+
+  validates_presence_of :comment, :if => lambda { self.to && self.to.is_vendor }
 
   before_create :transfer_money
 
@@ -38,14 +46,6 @@ class MoneyTransaction < ActiveRecord::Base
       errors.add(:to_uid, "account is in another currency") if from.currency != to.currency
     end
   end
-
-  # def prevent_from_self_sending
-  #   if from.present? && to.present?
-  #     errors.add(:to_uid, "you can't send money to yourself") if from.id = to.id
-  #   end 
-  # end
-
-  # filters
 
   def transfer_money
     if to.id != from.id
