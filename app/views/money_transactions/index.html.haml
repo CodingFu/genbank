@@ -19,8 +19,11 @@
             %span.label.label-inverse
               = t.from.formatted_uid
             %i.icon-upload
-            %span.label
-              = t.to.formatted_uid
+            - if t.to.is_vendor
+              %span.label.label-success= t.to.alias
+            - else
+              %span.label= t.to.formatted_uid
+              
           %td= "#{t.amount} #{t.to.currency}"
       - if is_incoming
         %tr
